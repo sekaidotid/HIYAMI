@@ -1,3 +1,3 @@
 # HIYAMI
 
-Automation Process For SoftSub Creation
+Shell Script Automation Program For SoftSub Creation
