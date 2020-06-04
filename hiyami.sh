@@ -53,23 +53,23 @@ for i in *.mkv; do
 # nHD
 ######################################################################
 
-# Convert Resolution videos
+echo "Convert Resolution Videos"
 ffmpeg -i "$i" -filter_complex "scale=640:360" -c:v $vid -preset veryslow -crf $default_quality -pix_fmt $default_pix_fmt -c:a aac -b:a 384k "$prog-${i%.*}.mp4"
 # Rename
 mv "$prog-${i%.*}.mp4" "[$prog]-${i%.*}-[nHD][$vid].mp4"
-# MKV Merge
+echo "Merge To MKV"
 mkvmerge --default-language $default_lang -o "$prog-${i%.*}.mkv" "[$prog]-${i%.*}-[nHD][$vid].mp4" "${i%.*}.$default_subtitle"
 # Delete .mp4 convert videos after MKV Merge
 rm "[$prog]-${i%.*}-[nHD][$vid].mp4"
-# Generate CRC32 .mkv
+echo "Generating CRC32 For .mkv"
 crc=$(crc32 "$prog-${i%.*}.mkv")
-# Rename .mkv files with CRC32
+echo "Rename .mkv files with CRC32"
 mv "$prog-${i%.*}.mkv" "[$fansub]-${i%.*}-[nHD][$vid][${crc::8}].mkv"
-# Add to .tar.xz archive
+echo "Add to .tar.xz archive"
 tar cf - "[$fansub]-${i%.*}-[nHD][$vid][${crc::8}].mkv" | xz -z -9 - > "$prog-${i%.*}.tar.xz"
-# Generate CRC32 .tar.xz
+echo "Generate CRC32 for .tar.xz"
 crcxz=$(crc32 "$prog-${i%.*}.tar.xz")
-# move to output directory
+echo move to output directory
 mv "[$fansub]-${i%.*}-[nHD][$vid][${crc::8}].mkv" output/"[$fansub]-${i%.*}-[nHD][$vid][${crc::8}].mkv"
 mv "$prog-${i%.*}.tar.xz" output/"[$fansub]-${i%.*}-[nHD][$vid][${crcxz::8}].tar.xz"
 
@@ -77,23 +77,23 @@ mv "$prog-${i%.*}.tar.xz" output/"[$fansub]-${i%.*}-[nHD][$vid][${crcxz::8}].tar
 # qHD
 ######################################################################
 
-# Convert Resolution videos
+echo "Convert Resolution Videos"
 ffmpeg -i "$i" -filter_complex "scale=960:540" -c:v $vid -preset veryslow -crf $default_quality -pix_fmt $default_pix_fmt -c:a aac -b:a 384k "$prog-${i%.*}.mp4"
 # Rename
 mv "$prog-${i%.*}.mp4" "[$prog]-${i%.*}-[qHD][$vid].mp4"
-# MKV Merge
+echo "Merge To MKV"
 mkvmerge --default-language $default_lang -o "$prog-${i%.*}.mkv" "[$prog]-${i%.*}-[qHD][$vid].mp4" "${i%.*}.$default_subtitle"
 # Delete .mp4 convert videos after MKV Merge
 rm "[$prog]-${i%.*}-[qHD][$vid].mp4"
-# Generate CRC32 .mkv
+echo "Generating CRC32 For .mkv"
 crc=$(crc32 "$prog-${i%.*}.mkv")
-# Rename .mkv files with CRC32
+echo "Rename .mkv files with CRC32"
 mv "$prog-${i%.*}.mkv" "[$fansub]-${i%.*}-[qHD][$vid][${crc::8}].mkv"
-# Add to .tar.xz archive
+echo "Add to .tar.xz archive"
 tar cf - "[$fansub]-${i%.*}-[qHD][$vid][${crc::8}].mkv" | xz -z -9 - > "$prog-${i%.*}.tar.xz"
-# Generate CRC32 .tar.xz
+echo "Generate CRC32 for .tar.xz"
 crcxz=$(crc32 "$prog-${i%.*}.tar.xz")
-# move to output directory
+echo move to output directory
 mv "[$fansub]-${i%.*}-[qHD][$vid][${crc::8}].mkv" output/"[$fansub]-${i%.*}-[qHD][$vid][${crc::8}].mkv"
 mv "$prog-${i%.*}.tar.xz" output/"[$fansub]-${i%.*}-[qHD][$vid][${crcxz::8}].tar.xz"
 
@@ -101,23 +101,23 @@ mv "$prog-${i%.*}.tar.xz" output/"[$fansub]-${i%.*}-[qHD][$vid][${crcxz::8}].tar
 # HD
 ######################################################################
 
-# Convert Resolution videos
+echo "Convert Resolution Videos"
 ffmpeg -i "$i" -filter_complex "scale=1280:720" -c:v $vid -preset veryslow -crf $default_quality -pix_fmt $default_pix_fmt -c:a aac -b:a 384k "$prog-${i%.*}.mp4"
 # Rename
 mv "$prog-${i%.*}.mp4" "[$prog]-${i%.*}-[HD][$vid].mp4"
-# MKV Merge
+echo "Merge To MKV"
 mkvmerge --default-language $default_lang -o "$prog-${i%.*}.mkv" "[$prog]-${i%.*}-[HD][$vid].mp4" "${i%.*}.$default_subtitle"
 # Delete .mp4 convert videos after MKV Merge
 rm "[$prog]-${i%.*}-[HD][$vid].mp4"
-# Generate CRC32 .mkv
+echo "Generating CRC32 For .mkv"
 crc=$(crc32 "$prog-${i%.*}.mkv")
-# Rename .mkv files with CRC32
+echo "Rename .mkv files with CRC32"
 mv "$prog-${i%.*}.mkv" "[$fansub]-${i%.*}-[HD][$vid][${crc::8}].mkv"
-# Add to .tar.xz archive
+echo "Add to .tar.xz archive"
 tar cf - "[$fansub]-${i%.*}-[HD][$vid][${crc::8}].mkv" | xz -z -9 - > "$prog-${i%.*}.tar.xz"
-# Generate CRC32 .tar.xz
+echo "Generate CRC32 for .tar.xz"
 crcxz=$(crc32 "$prog-${i%.*}.tar.xz")
-# move to output directory
+echo move to output directory
 mv "[$fansub]-${i%.*}-[HD][$vid][${crc::8}].mkv" output/"[$fansub]-${i%.*}-[HD][$vid][${crc::8}].mkv"
 mv "$prog-${i%.*}.tar.xz" output/"[$fansub]-${i%.*}-[HD][$vid][${crcxz::8}].tar.xz"
 
@@ -125,23 +125,23 @@ mv "$prog-${i%.*}.tar.xz" output/"[$fansub]-${i%.*}-[HD][$vid][${crcxz::8}].tar.
 # FHD
 ######################################################################
 
-# Convert Resolution videos
+echo "Convert Resolution Videos"
 ffmpeg -i "$i" -filter_complex "scale=1920:1080" -c:v $vid -preset veryslow -crf $default_quality -pix_fmt $default_pix_fmt -c:a aac -b:a 384k "$prog-${i%.*}.mp4"
 # Rename
 mv "$prog-${i%.*}.mp4" "[$prog]-${i%.*}-[FHD][$vid].mp4"
-# MKV Merge
+echo "Merge To MKV"
 mkvmerge --default-language $default_lang -o "$prog-${i%.*}.mkv" "[$prog]-${i%.*}-[FHD][$vid].mp4" "${i%.*}.$default_subtitle"
 # Delete .mp4 convert videos after MKV Merge
 rm "[$prog]-${i%.*}-[FHD][$vid].mp4"
-# Generate CRC32 .mkv
+echo "Generating CRC32 For .mkv"
 crc=$(crc32 "$prog-${i%.*}.mkv")
-# Rename .mkv files with CRC32
+echo "Rename .mkv files with CRC32"
 mv "$prog-${i%.*}.mkv" "[$fansub]-${i%.*}-[FHD][$vid][${crc::8}].mkv"
-# Add to .tar.xz archive
+echo "Add to .tar.xz archive"
 tar cf - "[$fansub]-${i%.*}-[FHD][$vid][${crc::8}].mkv" | xz -z -9 - > "$prog-${i%.*}.tar.xz"
-# Generate CRC32 .tar.xz
+echo "Generate CRC32 for .tar.xz"
 crcxz=$(crc32 "$prog-${i%.*}.tar.xz")
-# move to output directory
+echo move to output directory
 mv "[$fansub]-${i%.*}-[FHD][$vid][${crc::8}].mkv" output/"[$fansub]-${i%.*}-[FHD][$vid][${crc::8}].mkv"
 mv "$prog-${i%.*}.tar.xz" output/"[$fansub]-${i%.*}-[FHD][$vid][${crcxz::8}].tar.xz"
 
